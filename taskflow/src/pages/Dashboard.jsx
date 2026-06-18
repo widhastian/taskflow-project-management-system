@@ -1,56 +1,38 @@
-import { BarChart3, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
+import DashboardHeader from '../components/dashboard/DashboardHeader';
+import StatsGrid from '../components/dashboard/StatsGrid';
+import ProjectsList from '../components/dashboard/ProjectsList';
+import NextReminder from '../components/dashboard/NextReminder';
+import TodayTasks from '../components/dashboard/TodayTasks';
+import Collaborators from '../components/dashboard/Collaborators';
+import WeeklyOverview from '../components/dashboard/WeeklyOverview';
+import ActivityFeed from '../components/dashboard/ActivityFeed';
+import ProjectTimeline from "../components/dashboard/ProjectTimeline";
 
 function Dashboard() {
-  const stats = [
-    { label: 'Total Projects', value: 12, icon: BarChart3, color: 'bg-blue-500' },
-    { label: 'Completed Tasks', value: 48, icon: CheckCircle2, color: 'bg-green-500' },
-    { label: 'In Progress', value: 15, icon: Clock, color: 'bg-yellow-500' },
-    { label: 'Overdue', value: 3, icon: AlertCircle, color: 'bg-red-500' },
-  ];
-
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold text-slate-800">Selamat Datang di TaskFlow!</h2>
-        <p className="text-slate-500 mt-1">Ringkasan aktivitas project management Anda.</p>
-      </div>
+    <div className="space-y-6 max-w-7xl mx-auto">
+      {/* Header */}
+      <DashboardHeader />
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-          return (
-            <div
-              key={stat.label}
-              className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-slate-500">{stat.label}</p>
-                  <p className="text-3xl font-bold text-slate-800 mt-2">{stat.value}</p>
-                </div>
-                <div className={`${stat.color} p-3 rounded-lg`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      {/* Stats Grid */}
+      <StatsGrid />
 
-      {/* Recent Activity Placeholder */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
-        <h3 className="text-lg font-semibold text-slate-800 mb-4">Aktivitas Terbaru</h3>
-        <div className="space-y-4">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
-              <div className="w-10 h-10 bg-slate-200 rounded-full flex-shrink-0"></div>
-              <div className="flex-1">
-                <div className="h-4 bg-slate-200 rounded w-3/4 mb-2"></div>
-                <div className="h-3 bg-slate-100 rounded w-1/2"></div>
-              </div>
-            </div>
-          ))}
+      {/* ROW 1: 3 Kolom */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Kolom 1 (2/3): Projects List */}
+        <div className="lg:col-span-2 flex flex-col gap-4">
+          <WeeklyOverview />
+          <ProjectTimeline />
+          <ProjectsList />
+
+        </div>
+
+        {/* Kolom 2 (1/3): Next Reminder + Today's Tasks */}
+        <div className="lg:col-span-1 flex flex-col gap-4">
+          <NextReminder />
+          <TodayTasks />
+          <Collaborators />
+          <ActivityFeed />
         </div>
       </div>
     </div>
