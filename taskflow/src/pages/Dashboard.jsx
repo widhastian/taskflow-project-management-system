@@ -20,32 +20,25 @@ function Dashboard() {
       {/* Main Content - 2 Columns Scrollable */}
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-4 gap-4 min-h-0">
         
-        {/* Kolom Kiri (2/3) - Scrollable */}
-        <div className="lg:col-span-3 overflow-y-auto pr-1 space-y-4 pb-4">
+        {/* Kolom Kiri (3/4) - Scrollable */}
+        <div className="lg:col-span-3 pr-1 space-y-4 pb-4">
           <StatsGrid />
           <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-0">
             <div className="lg:col-span-2">
               <ProjectsList />
             </div>
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 flex-1 grid grid-cols-1 gap-4">
               <WeeklyOverview />
+              <Collaborators />
             </div>
           </div>
           
           <ProjectTimeline />
-
-          <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-0">
-            <div className="lg:col-span-2">
-              <Collaborators />
-            </div>
-            <div className="lg:col-span-1">
-              <ProjectsAnalytic />
-            </div>
-          </div>
+          <ProjectsAnalytic />
         </div>
 
-        {/* Kolom Kanan (1/3) - Scrollable */}
-        <div className="lg:col-span-1 overflow-y-auto pr-1 space-y-4 pb-4">
+        {/* Kolom Kanan (1/4) - Scrollable */}
+        <div className="lg:col-span-1 pr-1 space-y-4 pb-4">
           <NextReminder />
           <TodayTasks />
           <ActivityFeed />

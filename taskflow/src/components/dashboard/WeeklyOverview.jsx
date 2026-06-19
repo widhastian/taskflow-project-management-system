@@ -6,18 +6,26 @@ function WeeklyOverview() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const total = weeklyData.reduce((sum, item) => sum + item.value, 0);
-  const radius = 55;
+  const radius = 50;
   const circumference = 2 * Math.PI * radius;
+  const gap = 4; // gap antar segment dalam pixel
+
+  // Hitung total arc yang available (dikurangi gap)
+  const totalGap = gap * weeklyData.length;
+  const availableCircumference = Math.max(0, circumference - totalGap);
+  
   let accumulated = 0;
 
   const segments = weeklyData.map((item) => {
-    // Guard agar total=0 tidak menghasilkan NaN/Infinity pada SVG
     const percentage = total === 0 ? 0 : item.value / total;
-
-    const strokeDasharray = `${circumference * percentage} ${circumference}`;
-    const strokeDashoffset = -accumulated * circumference;
-
-    accumulated += percentage;
+    const arcLength = availableCircumference * percentage;
+    
+    // stroke-dasharray: [panjang arc, sisa circumference]
+    const strokeDasharray = `${arcLength} ${circumference}`;
+    const strokeDashoffset = -accumulated - (gap * 0.5); // offset + half gap
+    
+    accumulated += arcLength + gap;
+    
     return { ...item, strokeDasharray, strokeDashoffset, percentage };
   });
 
@@ -39,6 +47,15 @@ function WeeklyOverview() {
         {/* Donut Chart */}
         <div className="relative w-28 h-28 flex-shrink-0">
           <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+            {/* Background circle */}
+            <circle
+              cx="60"
+              cy="60"
+              r={radius}
+              fill="none"
+              stroke="#f1f5f9"
+              strokeWidth="18"
+            />
             {segments.map((segment, index) => (
               <circle
                 key={index}
@@ -50,7 +67,7 @@ function WeeklyOverview() {
                 className={segment.color}
                 strokeDasharray={segment.strokeDasharray}
                 strokeDashoffset={segment.strokeDashoffset}
-                strokeLinecap="round"
+                strokeLinecap="butt"
                 style={{ 
                   opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.3,
                   cursor: 'pointer',

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ dari react-router-dom
+import { useLocation } from 'react-router-dom'; 
 import { Bell, Search,  Settings, LogOut, X } from 'lucide-react';
 
 function Navbar() {
