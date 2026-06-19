@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom'; // ✅ dari react-router-dom
+import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard,
   FolderKanban,
@@ -16,6 +16,10 @@ function Sidebar() {
     { path: '/', label: 'Dashboard', icon: LayoutDashboard },
     { path: '/projects', label: 'Projects', icon: FolderKanban },
     { path: '/tasks', label: 'Tasks', icon: ListTodo },
+    { path: '/documents', label: 'Documents', icon: ListTodo },
+    { path: '/collaborators', label: 'Collaborators', icon: ListTodo },
+    { path: '/setting', label: 'Setting', icon: ListTodo },
+    { path: '/trash', label: 'Trash', icon: ListTodo },
   ];
 
   return (

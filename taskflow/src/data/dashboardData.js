@@ -178,8 +178,32 @@ export const weeklyData = [
 ];
 
 export const projectAnalytics = [
-  { label: 'Website Redesign', value: 16, color: 'bg-blue-500' },
-  { label: 'Mobile App v2.0', value: 14, color: 'bg-purple-500' },
-  { label: 'API Integration', value: 8, color: 'bg-green-500' },
-  { label: 'Database Migration', value: 10, color: 'bg-orange-500' },
+  {
+    label: 'Website Redesign',
+    completionRate: 75,
+    overdueTasks: 2,
+    color: 'bg-blue-500',
+    textColor: 'text-blue-600'
+  },
+  {
+    label: 'Mobile App v2.0',
+    completionRate: 30,
+    overdueTasks: 5,
+    color: 'bg-purple-500',
+    textColor: 'text-purple-600'
+  },
+  {
+    label: 'API Integration',
+    completionRate: 100,
+    overdueTasks: 0,
+    color: 'bg-green-500',
+    textColor: 'text-green-600'
+  },
+  {
+    label: 'Database Migration',
+    completionRate: 45,
+    overdueTasks: 1,
+    color: 'bg-orange-500',
+    textColor: 'text-orange-600'
+  },
 ];
