@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ dari react-router-dom
-import { Bell, Search, User, Settings, LogOut, X } from 'lucide-react';
+import { Bell, Search,  Settings, LogOut, X } from 'lucide-react';
 
 function Navbar() {
   const location = useLocation();
@@ -55,28 +55,33 @@ function Navbar() {
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
         </button>
 
-        {/* Profile */}
+        {/* Profile Dropdown - Hanya Foto */}
         <div className="relative">
           <button
             onClick={() => setProfileOpen(!profileOpen)}
-            className="flex items-center gap-2 p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-1 hover:bg-slate-100 rounded-full transition-colors"
+            title="Profil"
           >
-            <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
-              <User className="w-4 h-4 text-white" />
+            <div className="w-9 h-9 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full flex items-center justify-center text-white font-medium text-sm">
+              A
             </div>
-            <span className="hidden sm:block text-sm font-medium text-slate-700">Admin</span>
           </button>
 
           {profileOpen && (
             <>
               <div className="fixed inset-0 z-10" onClick={() => setProfileOpen(false)} />
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-20">
-                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50">
+              <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-20">
+                {/* User Info */}
+                <div className="px-4 py-3 border-b border-slate-100">
+                  <p className="font-medium text-slate-800">Admin User</p>
+                  <p className="text-sm text-slate-500">admin@taskflow.com</p>
+                </div>
+                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">
                   <Settings className="w-4 h-4" />
                   Pengaturan
                 </button>
                 <div className="border-t border-slate-100 my-1"></div>
-                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50">
+                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors">
                   <LogOut className="w-4 h-4" />
                   Keluar
                 </button>
