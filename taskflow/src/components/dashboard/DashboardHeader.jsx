@@ -8,9 +8,10 @@ function DashboardHeader() {
 
   useEffect(() => {
     const hour = new Date().getHours();
-    if (hour < 12) setGreeting('Good Morning');
-    else if (hour < 18) setGreeting('Good Afternoon');
-    else setGreeting('Good Evening');
+    if (hour < 12) setGreeting('Selamat Pagi');
+    else if (hour < 15) setGreeting('Selamat Siang');
+    else if (hour < 18) setGreeting('Selamat Sore');
+    else setGreeting('Selamat Malam');
 
     const timer = setInterval(() => setCurrentTime(new Date()), 60000);
     return () => clearInterval(timer);
@@ -21,7 +22,7 @@ function DashboardHeader() {
       <div>
         <h1 className="text-2xl font-bold text-slate-800">{greeting}!</h1>
         <p className="text-slate-500 mt-1">
-          {currentTime.toLocaleDateString('en-US', {
+          {currentTime.toLocaleDateString('id-ID', {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
